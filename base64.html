@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
   <title>Base64编码图片解析工具</title>
+  <link rel="icon" href="https://yhgzs-111.github.io/favicon.ico" type ="image/x-icon">
   <style type="text/css">
     body {
       /* 设置页面背景颜色和文本对齐方式 */
@@ -109,7 +109,7 @@
       var imageType = selectedImageType;
 
       if (base64Input) {
-        // 定义用于检查Base64编码是否有效的正则表达式
+        // 检查Base64编码是否有效
         var pattern = /^[0-9a-zA-Z\u4e00-\u9fa5!"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\s]*$/;
         
         if (pattern.test(base64Input)) {
@@ -173,24 +173,20 @@
       }, 4000);
     }
 
-    // 更新选择的图像类型
     function updateImageType() {
       selectedImageType = document.getElementById("imageTypeSelect").value;
     }
 
-    // 禁止按F12打开浏览器开发者工具
     document.onkeydown = function(e) {
         if (event.keyCode == 123) { 
             return false;
         }
     }
 
-    // 禁止右键菜单
     document.addEventListener("contextmenu", function(e) {
       e.preventDefault();
     });
 
-    // 禁止Shift + F10键盘事件
     document.addEventListener("keydown", function(e) {
       if ((e.shiftKey && e.keyCode === 121) || (e.key === "F10" && e.shiftKey)) {
         e.preventDefault();
