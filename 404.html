@@ -56,7 +56,20 @@
 </head>
 <body>
     <script>
-        window.location.href = "https://yhgzs-111.github.io/404"; 
+        // 获取上次访问的时间戳
+        var lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
+
+        // 获取当前时间戳
+        var currentTimestamp = Date.now();
+
+        // 如果上次访问时间在一分钟之前，进行重定向
+        if (!lastVisitTimestamp || (currentTimestamp - lastVisitTimestamp > 60000)) {
+            // 更新本次访问时间戳
+            localStorage.setItem('lastVisitTimestamp', currentTimestamp);
+
+            // 进行重定向
+            window.location.href = "https://yhgzs-111.github.io"; // 将链接替换为您要重定向到的URL
+        }
     </script>
     <div class="error-container">
         <h1>404 - 页面未找到</h1>
