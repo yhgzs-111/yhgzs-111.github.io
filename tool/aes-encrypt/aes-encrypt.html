@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>AES文本加密/解密</title>
   <style>
     body {
@@ -22,7 +23,7 @@
     input, button {
       width: 200px;
       padding: 5px;
-      margin-top: 5px;
+      margin: 5px auto;
       border: 1px solid #ccc;
       border-radius: 4px;
     }
@@ -45,34 +46,80 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+
+    #customPasswordInput {
+      display: none;
+    }
+
+    #note {
+      font-size: 12px;
+      color: #888;
+      margin-top: 20px;
+    }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 </head>
 <body>
   <h1>AES文本加密/解密</h1>
 
-  <label for="textToEncrypt">输入要加密的文本：</label>
+  <label for="textToEncrypt">输入要加/解密的文本：</label>
   <textarea id="textToEncrypt"></textarea><br>
 
-  <label for="password">密码：</label>
-  <input type="password" id="password"><br>
+  <label for="encryptionOption">加密方式：</label>
+  <select id="encryptionOption">
+    <option value="default">默认加密</option>
+    <option value="custom">自定义加密</option>
+  </select><br>
+
+  <label for="password" id="passwordLabel" style="display: none;">密码：</label>
+  <input type="password" id="password" style="display: none;"><br>
 
   <button id="encryptButton">加密</button>
   <button id="decryptButton">解密</button><br>
 
+  <p id="note"><strong>注意:</strong>使用的默认的密文字符将可能让他人轻易破解您的加密文字,因此为了安全请在加密之前设定您自己特有的密文字符,设定后请记录下来,以免无法解密。</p>
+  <p id="note"><strong>注意:</strong>使用的默认的密文字符将可能让他人轻易破解您的加密文字,因此为了安全请在加密之前设定您自己特有的密文字符,设定后请记录下来,以免无法解密。</p>
+  <p id="note"><strong>注意:</strong>使用的默认的密文字符将可能让他人轻易破解您的加密文字,因此为了安全请在加密之前设定您自己特有的密文字符,设定后请记录下来,以免无法解密。</p>
+
   <script>
+    document.getElementById('encryptionOption').addEventListener('change', () => {
+      const passwordInput = document.getElementById('password');
+      const passwordLabel = document.getElementById('passwordLabel');
+      if (document.getElementById('encryptionOption').value === 'custom') {
+        passwordInput.style.display = 'block';
+        passwordLabel.style.display = 'block';
+      } else {
+        passwordInput.style.display = 'none';
+        passwordLabel.style.display = 'none';
+      }
+    });
+
     document.getElementById('encryptButton').addEventListener('click', () => {
       const textToEncrypt = document.getElementById('textToEncrypt').value;
-      const password = document.getElementById('password').value;
+      const encryptionOption = document.getElementById('encryptionOption').value;
+      let password = "114514191810"; // 默认密钥
+      if (encryptionOption === 'custom') {
+        password = document.getElementById('password').value;
+      }
       const encryptedText = encryptText(textToEncrypt, password);
       document.getElementById('textToEncrypt').value = encryptedText;
     });
 
     document.getElementById('decryptButton').addEventListener('click', () => {
       const encryptedText = document.getElementById('textToEncrypt').value;
-      const password = document.getElementById('password').value;
+      const encryptionOption = document.getElementById('encryptionOption').value;
+      let password = document.getElementById('password').value; // 使用自定义密码
       const decryptedText = decryptText(encryptedText, password);
-      document.getElementById('textToEncrypt').value = decryptedText;
+      if (decryptedText) {
+        document.getElementById('textToEncrypt').value = decryptedText;
+      } else {
+        // 无密码解密失败，尝试使用默认密码
+        password = "114514191810";
+        const defaultDecryptedText = decryptText(encryptedText, password);
+        if (defaultDecryptedText) {
+          document.getElementById('textToEncrypt').value = defaultDecryptedText;
+        }
+      }
     });
 
     function encryptText(text, password) {
@@ -81,8 +128,12 @@
     }
 
     function decryptText(encryptedText, password) {
-      const decrypted = CryptoJS.AES.decrypt(encryptedText, password);
-      return decrypted.toString(CryptoJS.enc.Utf8);
+      try {
+        const decrypted = CryptoJS.AES.decrypt(encryptedText, password);
+        return decrypted.toString(CryptoJS.enc.Utf8);
+      } catch (error) {
+        return null;
+      }
     }
   </script>
 </body>
