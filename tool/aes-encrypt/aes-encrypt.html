@@ -62,26 +62,31 @@
 <body>
   <h1>AES文本加密/解密</h1>
 
+  <!-- 用户输入文本 -->
   <label for="textToEncrypt">输入要加/解密的文本：</label>
   <textarea id="textToEncrypt"></textarea><br>
 
+  <!-- 加密方式选择 -->
   <label for="encryptionOption">加密方式：</label>
   <select id="encryptionOption">
     <option value="default">默认加密</option>
     <option value="custom">自定义加密</option>
+    <option value="noPassword">无密码加密</option>
   </select><br>
 
+  <!-- 密码输入框 -->
   <label for="password" id="passwordLabel" style="display: none;">密码：</label>
   <input type="password" id="password" style="display: none;"><br>
 
+  <!-- 加密和解密按钮 -->
   <button id="encryptButton">加密</button>
   <button id="decryptButton">解密</button><br>
 
-  <p id="note"><strong>注意:</strong>使用的默认的密文字符将可能让他人轻易破解您的加密文字,因此为了安全请在加密之前设定您自己特有的密文字符,设定后请记录下来,以免无法解密。</p>
-  <p id="note"><strong>注意:</strong>使用的默认的密文字符将可能让他人轻易破解您的加密文字,因此为了安全请在加密之前设定您自己特有的密文字符,设定后请记录下来,以免无法解密。</p>
+  <!-- 注意事项 -->
   <p id="note"><strong>注意:</strong>使用的默认的密文字符将可能让他人轻易破解您的加密文字,因此为了安全请在加密之前设定您自己特有的密文字符,设定后请记录下来,以免无法解密。</p>
 
   <script>
+    // 当选择框值改变时，处理密码输入框的显示与隐藏
     document.getElementById('encryptionOption').addEventListener('change', () => {
       const passwordInput = document.getElementById('password');
       const passwordLabel = document.getElementById('passwordLabel');
@@ -94,17 +99,26 @@
       }
     });
 
+    // 加密按钮点击事件处理
     document.getElementById('encryptButton').addEventListener('click', () => {
       const textToEncrypt = document.getElementById('textToEncrypt').value;
       const encryptionOption = document.getElementById('encryptionOption').value;
-      let password = "114514191810"; // 默认密钥
-      if (encryptionOption === 'custom') {
-        password = document.getElementById('password').value;
+
+      if (encryptionOption === 'noPassword') {
+        // 无密码加密
+        const encryptedText = encryptText(textToEncrypt, ''); // 空密码
+        document.getElementById('textToEncrypt').value = encryptedText;
+      } else {
+        let password = "114514191810"; // 默认密钥
+        if (encryptionOption === 'custom') {
+          password = document.getElementById('password').value;
+        }
+        const encryptedText = encryptText(textToEncrypt, password);
+        document.getElementById('textToEncrypt').value = encryptedText;
       }
-      const encryptedText = encryptText(textToEncrypt, password);
-      document.getElementById('textToEncrypt').value = encryptedText;
     });
 
+    // 解密按钮点击事件处理
     document.getElementById('decryptButton').addEventListener('click', () => {
       const encryptedText = document.getElementById('textToEncrypt').value;
       const encryptionOption = document.getElementById('encryptionOption').value;
@@ -122,11 +136,13 @@
       }
     });
 
+    // AES加密函数
     function encryptText(text, password) {
       const encrypted = CryptoJS.AES.encrypt(text, password);
       return encrypted.toString();
     }
 
+    // AES解密函数
     function decryptText(encryptedText, password) {
       try {
         const decrypted = CryptoJS.AES.decrypt(encryptedText, password);
