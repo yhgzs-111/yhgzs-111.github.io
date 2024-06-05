@@ -6,6 +6,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     min-height: 100vh;
     position: relative;
     overflow: auto;
@@ -40,6 +41,24 @@ h1, h2 {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.icp-section {
+    margin-top: auto;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
+}
+
+.icp-section h3 {
+    display: inline-block;
+    background-color: #f8f9fa;
+    color: #007BFF;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin-bottom: 0;
 }
 
 .link {
