@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>猜数字游戏</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        color: #333;
+    }
+    input[type="number"] {
+        width: 100px;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    #message {
+        margin-top: 10px;
+        color: #333;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 20% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .home-link {
+        position: fixed;
+        right: 20px;
+        background-color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        color: #007BFF;
+        text-decoration: none;
+        font-size: 16px;
+        white-space: pre-wrap;
+        display: block;
+        margin-bottom: 20px;
+    }
+    .glowing-icon {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .glowing-icon:hover {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 1);
+    }
+</style>
+</head>
+<body>
+    <a href="https://github.com/yhgzs-111/" target="_blank">
+        <img src="../img/NNNH.png" alt="Glowing Icon" class="glowing-icon">
+    </a>
+    <script src="../js/dynamic_home_links.js"></script>
+    <a href="../index.html" class="home-link">返回主页</a>
+    <div class="container">
+        <h1>猜数字游戏</h1>
+        <p id="hint">猜一个介于1和100之间的数字。</p>
+        <input type="number" id="guessInput" min="1" max="100">
+        <button id="submitBtn">提交猜测</button>
+        <p id="message"></p>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>你猜对了，想继续玩吗？</p>
+            <button id="restartBtn">继续</button>
+        </div>
+    </div>
+<script src="../js/game_js/GuessNumberGame.js"></script>
+</body>
+</html>
