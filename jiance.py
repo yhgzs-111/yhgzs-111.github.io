@@ -28,7 +28,7 @@ COMMIT_MESSAGE = "Auto update: new stats"
 
 # GitHub Token 配置（你可以直接写入环境变量中或配置到脚本里）
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-GITHUB_REMOTE = "https://<TOKEN>@github.com/<username>/<repo>.git"
+GITHUB_REMOTE = "https://<TOKEN>@github.com/yhgzs-111/yhgzs-111.github.io.git"
 
 def init_csv():
     if not os.path.exists(CSV_FILE):
