@@ -101,6 +101,7 @@ def build_html(timestamp, stats):
 <body>
   <header>
     <h1>维基访问最新状态</h1>
+    <h2>测试机器归属地：浙江杭州</h2>
     <div class="timestamp">更新时间：{timestamp}</div>
   </header>
   <div class="grid">
