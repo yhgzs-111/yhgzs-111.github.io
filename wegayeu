@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>免费注册您的Wegay.eu二级域名</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #8a2be2;
+            --primary-light: #9d4edd;
+            --secondary-color: #ff6b6b;
+            --success-color: #38b2ac;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+            --text-color: #2d3748;
+            --light-gray: #f8f9fa;
+            --gradient: linear-gradient(135deg, #8a2be2 0%, #ff6b6b 100%);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo i {
+            font-size: 1.5rem;
+        }
+        
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.1;
+            z-index: -1;
+            border-radius: 0 0 50% 50%/0 0 30% 30%;
+            transform: scaleX(1.5);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #4a5568;
+        }
+        
+        .rainbow-text {
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+        
+        .domain-checker {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .domain-checker:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .domain-checker h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .domain-input-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .domain-input {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+        }
+        
+        .domain-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(138, 43, 226, 0.2);
+        }
+        
+        .check-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .check-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .suffix-hint {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .availability-message {
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .availability-message i {
+            font-size: 1.25rem;
+        }
+        
+        .availability-message.available {
+            background-color: rgba(56, 178, 172, 0.1);
+            color: var(--success-color);
+            display: flex;
+            border: 1px solid rgba(56, 178, 172, 0.2);
+        }
+        
+        .availability-message.unavailable {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--error-color);
+            display: flex;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        
+        .availability-message.checking {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+            display: flex;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        
+        .availability-message.error {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--error-color);
+            display: flex;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        
+        .register-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+            display: none;
+            margin-top: 1rem;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .register-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .feature-card p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+        
+        .feature-card i {
+            font-size: 1.75rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .faq {
+            margin-bottom: 4rem;
+        }
+        
+        .faq h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-item h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .faq-item p {
+            color: #4a5568;
+            line-height: 1.7;
+            padding-left: 2rem;
+        }
+        
+        .faq-item i {
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: white;
+            padding: 3rem 0;
+            text-align: center;
+            color: #718096;
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 2rem;
+        }
+        
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        /* 新增的弹窗样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .modal-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .modal-button-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .modal-button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .modal-button-secondary {
+            background-color: #e2e8f0;
+            color: var(--text-color);
+        }
+
+        .modal-button-secondary:hover {
+            background-color: #cbd5e0;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .domain-input-container {
+                flex-direction: column;
+            }
+            
+            .check-button, .register-button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav {
+                gap: 1rem;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+
+            .modal-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-rainbow"></i>
+                <span>Wegay.eu</span>
+            </div>
+            <nav>
+                <a href="#features"><i class="fas fa-star"></i> 特点</a>
+                <a href="#faq"><i class="fas fa-question-circle"></i> 常见问题</a>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="hero">
+            <h1>获取您的免费 <span class="rainbow-text">Wegay.eu</span> 二级域名</h1>
+            <p><b>为LGBTQ+社区以及所有人提供免费域名服务，表达您的骄傲！</b></p>
+            <p>简单、快速、完全免费 - 只需几分钟即可拥有您的专属二级域名</p>
+        </section>
+        
+        <section class="domain-checker">
+            <h2>
+                <i class="fas fa-search"></i>
+                <span>域名查询</span>
+            </h2>
+            <div class="domain-input-container">
+                <input type="text" id="domain-input" class="domain-input" placeholder="输入您想要的域名前缀">
+                <button id="check-availability" class="check-button">
+                    <i class="fas fa-check-circle"></i>
+                    <span>检查可用性</span>
+                </button>
+            </div>
+            <p class="suffix-hint">
+                <i class="fas fa-info-circle"></i>
+                <span>您的完整域名将是: [您输入的域名].wegay.eu</span>
+            </p>
+            <div id="availability-message" class="availability-message">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span></span>
+            </div>
+            <button id="register-now" class="register-button">
+                <i class="fas fa-rocket"></i>
+                <span>立即注册</span>
+            </button>
+        </section>
+        
+        <section id="features" class="features">
+            <div class="feature-card">
+                <h3>
+                    <i class="fas fa-gem"></i>
+                    <span>完全免费</span>
+                </h3>
+                <p>我们的二级域名服务完全免费，无需支付任何费用即可获得。我们相信互联网应该是开放的，每个人都应该有机会拥有自己的网络身份。</p>
+            </div>
+            <div class="feature-card">
+                <h3>
+                    <i class="fas fa-bolt"></i>
+                    <span>简单易用</span>
+                </h3>
+                <p>注册过程简单快捷，几分钟内即可完成注册。</p>
+            </div>
+            <div class="feature-card">
+                <h3>
+                    <i class="fas fa-heart"></i>
+                    <span>支持LGBTQ+</span>
+                </h3>
+                <p>捐赠的部分收益将捐赠给LGBTQ+权益组织，支持平权运动。</p>
+            </div>
+        </section>
+        
+        <section id="faq" class="faq">
+            <h2>
+                <i class="fas fa-question"></i>
+                <span>常见问题</span>
+            </h2>
+            <div class="faq-item">
+                <h3>
+                    <i class="fas fa-question-circle"></i>
+                    <span>什么是二级域名？</span>
+                </h3>
+                <p>二级域名是主域名下的子域名，例如"example.wegay.eu"中，"example"就是二级域名。它可以让您在不需要购买完整域名的情况下，拥有个性化的网络地址。</p>
+            </div>
+            <div class="faq-item">
+                <h3>
+                    <i class="fas fa-key"></i>
+                    <span>注册需要什么条件？</span>
+                </h3>
+                <p>注册需要200积分。我们致力于保持服务免费，同时防止滥用。</p>
+            </div>
+            <div class="faq-item">
+                <h3>
+                    <i class="fas fa-ban"></i>
+                    <span>有使用限制吗？</span>
+                </h3>
+                <p>禁止滥用服务，包括但不限于违法内容、垃圾邮件、网络钓鱼、仇恨言论或任何形式的歧视。我们有权在不通知您的情况下包括但不限于删除、变更您的二级域名。我们支持包容和尊重的网络环境。</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>© 2025 Wegay.eu - 为LGBTQ+社区以及所有人提供免费域名服务</p>
+        <p><i class="fas fa-rainbow"></i> 骄傲支持多元与包容 <i class="fas fa-rainbow"></i></p>
+        <p>© 2025 JiShareDomain</p>
+    </footer>
+
+    <!-- 新增的弹窗HTML -->
+    <div class="modal-overlay" id="account-modal">
+        <div class="modal-content">
+            <h3>您是否已有鸡享域账户？</h3>
+            <p>我们将跳转到鸡享域平台完成注册流程，请确认您是否已有账户。</p>
+            <div class="modal-buttons">
+                <button class="modal-button modal-button-primary" id="has-account">是的，我有账户</button>
+                <button class="modal-button modal-button-secondary" id="no-account">没有，我需要注册</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('check-availability').addEventListener('click', function() {
+            const domainInput = document.getElementById('domain-input');
+            const domain = domainInput.value.trim();
+            const availabilityMessage = document.getElementById('availability-message');
+            const messageSpan = availabilityMessage.querySelector('span');
+            const registerNow = document.getElementById('register-now');
+            
+            // 获取图标元素
+            const icon = availabilityMessage.querySelector('i');
+            
+            if (!domain) {
+                messageSpan.textContent = '请输入域名';
+                availabilityMessage.className = 'availability-message unavailable';
+                icon.className = 'fas fa-exclamation-circle';
+                registerNow.style.display = 'none';
+                return;
+            }
+
+            // 验证域名格式
+            if (!/^[a-zA-Z0-9-]+$/.test(domain)) {
+                messageSpan.textContent = '域名只能包含字母、数字和连字符(-)';
+                availabilityMessage.className = 'availability-message unavailable';
+                icon.className = 'fas fa-exclamation-circle';
+                registerNow.style.display = 'none';
+                return;
+            }
+            
+            if (domain.length > 63) {
+                messageSpan.textContent = '域名长度不能超过63个字符';
+                availabilityMessage.className = 'availability-message unavailable';
+                icon.className = 'fas fa-exclamation-circle';
+                registerNow.style.display = 'none';
+                return;
+            }
+
+            // 使用新的API
+            const apiUrl = `https://nic.lsdt.top/api/domain/check?domain=${domain}&suffix=wegay.eu`;
+
+            messageSpan.textContent = '正在检查域名...';
+            availabilityMessage.className = 'availability-message checking';
+            icon.className = 'fas fa-spinner fa-spin';
+            registerNow.style.display = 'none';
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 0) {
+                        // 域名可用
+                        let message = `${domain}.wegay.eu 可以注册！`;
+                        if (data.data.point > 0) {
+                            message += ` (需要 ${data.data.point} 积分)`;
+                        }
+                        messageSpan.textContent = message;
+                        availabilityMessage.className = 'availability-message available';
+                        icon.className = 'fas fa-check-circle';
+                        registerNow.style.display = 'flex';
+                    } else {
+                        // 域名不可用
+                        let message = data.message || '该域名不可用';
+                        if (data.data && data.data.reason === 'invalid_suffix') {
+                            message += '，可用后缀: ' + data.data.available_suffixes.join(', ');
+                        }
+                        messageSpan.textContent = message;
+                        availabilityMessage.className = 'availability-message unavailable';
+                        icon.className = 'fas fa-times-circle';
+                        registerNow.style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error('检查域名错误:', error);
+                    messageSpan.textContent = '检查域名时出错，请稍后重试';
+                    availabilityMessage.className = 'availability-message error';
+                    icon.className = 'fas fa-exclamation-triangle';
+                    registerNow.style.display = 'none';
+                });
+        });
+
+        // 注册按钮点击事件 - 修改为显示弹窗
+        document.getElementById('register-now').addEventListener('click', function() {
+            const domain = document.getElementById('domain-input').value.trim();
+            if (domain) {
+                // 显示弹窗
+                document.getElementById('account-modal').classList.add('active');
+                
+                // 存储当前域名到弹窗按钮的data属性
+                document.getElementById('has-account').dataset.domain = domain;
+                document.getElementById('no-account').dataset.domain = domain;
+            }
+        });
+
+        // 弹窗按钮事件
+        document.getElementById('has-account').addEventListener('click', function() {
+            const domain = this.dataset.domain;
+            window.location.href = `https://nic.lsdt.top/login/?domain=${domain}.wegay.eu`;
+        });
+
+        document.getElementById('no-account').addEventListener('click', function() {
+            const domain = this.dataset.domain;
+            window.location.href = `https://nic.lsdt.top/login/?act=reg&domain=${domain}.wegay.eu`;
+        });
+
+        // 点击弹窗外部关闭弹窗
+        document.getElementById('account-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+        
+        // 输入框回车事件
+        document.getElementById('domain-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('check-availability').click();
+            }
+        });
+    </script>
+</body>
+</html>
